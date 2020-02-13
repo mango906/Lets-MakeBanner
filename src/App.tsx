@@ -1,8 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
+import { DisplayBanner } from "./components/DisplayBanner";
+
 const App = () => {
-  return <Container></Container>;
+  return (
+    <Container>
+      <DisplayBanner></DisplayBanner>
+    </Container>
+  );
 };
 
 const Container = styled("div")`
