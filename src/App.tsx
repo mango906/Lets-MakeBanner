@@ -1,8 +1,13 @@
 import React from "react";
-import "./App.css";
+import styled from "styled-components";
 
 const App = () => {
-  return <></>;
+  return <Container></Container>;
 };
+
+const Container = styled("div")`
+  min-height: 100vh;
+  background-color: #000;
+`;
 
 export default App;
