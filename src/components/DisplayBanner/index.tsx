@@ -12,7 +12,7 @@ export const DisplayBanner = (props: Props) => {
   return <Container width={width} height={height} backgroundColor={backgroundColor}></Container>;
 };
 
-const Container = styled("div")<{
+const Container = styled.div<{
   width: number;
   height: number;
   backgroundColor: string;
@@ -20,6 +20,7 @@ const Container = styled("div")<{
   width: ${(props) => `${props.width}px`};
   height: ${(props) => `${props.height}px`};
   background-color: ${(props) => props.backgroundColor};
+  margin: 0 auto;
 `;
 
 DisplayBanner.defaultProps = {
