@@ -10,10 +10,10 @@ interface Props {
 
 export const DisplayBanner = (props: Props) => {
   const { width, height, backgroundColor, style } = props;
-  return <Container width={width} height={height} backgroundColor={backgroundColor} style={style} />;
+  return <Container style={style} width={width} height={height} backgroundColor={backgroundColor} />;
 };
 
-const Container = styled.div<{
+const Container = styled.canvas<{
   width: number;
   height: number;
   backgroundColor: string;
@@ -24,7 +24,5 @@ const Container = styled.div<{
 `;
 
 DisplayBanner.defaultProps = {
-  width: 700,
-  height: 350,
   backgroundColor: "#fff"
 };
