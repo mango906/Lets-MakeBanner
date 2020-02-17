@@ -21,6 +21,7 @@ const Container = styled.canvas<{
   width: ${(props) => `${props.width}px`};
   height: ${(props) => `${props.height}px`};
   background-color: ${(props) => props.backgroundColor};
+  margin: 0 auto;
 `;
 
 DisplayBanner.defaultProps = {
