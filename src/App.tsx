@@ -63,7 +63,7 @@ const App = () => {
             value={height}
           />
         </BannerForm>
-        <DisplayBanner width={width} height={height} style={{ marginTop: 24 }} />
+        <DisplayBanner width={width} height={height} style={{ marginTop: 24 }} backgroundColor={background} />
         <ColorButton onClick={handleColorPicker} color={background} />
         {sketchPicker}
       </Content>
