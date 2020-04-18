@@ -1,16 +1,32 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 
 interface Props {
   width: number;
   height: number;
+  text: string;
   backgroundColor: string;
   style?: React.CSSProperties;
 }
 
 export const DisplayBanner = (props: Props) => {
-  const { width, height, backgroundColor, style } = props;
-  return <Container style={style} width={width} height={height} backgroundColor={backgroundColor} />;
+  const { width, height, text, backgroundColor, style } = props;
+
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const ctx = canvasRef.current!.getContext("2d");
+
+    ctx!.clearRect(0, 0, width, height);
+
+    ctx!.font = "20px SF Pro";
+    ctx!.textAlign = "center";
+    ctx!.fillStyle = "#fff";
+
+    ctx!.fillText(text, width / 2, height / 2);
+  }, [width, height, text]);
+
+  return <Container ref={canvasRef} style={style} width={width} height={height} backgroundColor={backgroundColor} />;
 };
 
 const Container = styled.canvas<{

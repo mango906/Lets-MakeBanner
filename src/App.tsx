@@ -12,13 +12,14 @@ import { ColorButton } from "./components/ColorButton";
 const App = () => {
   const [state, onChange] = useInput({
     width: "700",
-    height: "350"
+    height: "350",
+    value: ""
   });
 
   const [colorPickerShow, setColorPickerShow] = useState<boolean>(false);
   const [background, setBackground] = useState<string>("");
 
-  const { width, height } = state;
+  const { width, height, value } = state;
 
   useEffect(() => {
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
@@ -63,7 +64,14 @@ const App = () => {
             value={height}
           />
         </BannerForm>
-        <DisplayBanner width={width} height={height} style={{ marginTop: 24 }} backgroundColor={background} />
+        <DisplayBanner
+          width={width}
+          height={height}
+          style={{ marginTop: 24 }}
+          backgroundColor={background}
+          text={value}
+        />
+        <Input value={value} name="value" onChange={onChange} />
         <ColorButton onClick={handleColorPicker} color={background} />
         {sketchPicker}
       </Content>
@@ -77,7 +85,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #000;
+  background-color: #212529;
 `;
 
 const Content = styled.div`
