@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
+import { WHITE } from '../../utils/color';
+
 interface Props {
   width: number;
   height: number;
@@ -21,7 +23,7 @@ export const DisplayBanner = (props: Props) => {
 
     ctx!.font = "20px SF Pro";
     ctx!.textAlign = "center";
-    ctx!.fillStyle = "#fff";
+    ctx!.fillStyle = WHITE;
 
     ctx!.fillText(text, width / 2, height / 2);
   }, [width, height, text]);
@@ -41,5 +43,5 @@ const Container = styled.canvas<{
 `;
 
 DisplayBanner.defaultProps = {
-  backgroundColor: "#fff"
+  backgroundColor: WHITE
 };

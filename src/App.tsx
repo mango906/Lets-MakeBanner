@@ -1,13 +1,13 @@
-import React, { useState, useCallback, useEffect, useMemo } from "react";
-import styled from "styled-components";
-import { ChromePicker } from "react-color";
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { ChromePicker } from 'react-color';
+import styled from 'styled-components';
 
-import { Header } from "./components/Header";
-import { DisplayBanner } from "./components/DisplayBanner";
-import { Input } from "./components/Input";
-
-import useInput from "./hooks/useInput";
-import { ColorButton } from "./components/ColorButton";
+import { ColorButton } from './components/ColorButton';
+import { DisplayBanner } from './components/DisplayBanner';
+import { Header } from './components/Header';
+import { Input } from './components/Input';
+import useInput from './hooks/useInput';
+import { BACKGROUNDCOLOR } from './utils/color';
 
 const App = () => {
   const [state, onChange] = useInput({
@@ -85,7 +85,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #212529;
+  background-color: ${BACKGROUNDCOLOR};
 `;
 
 const Content = styled.div`
