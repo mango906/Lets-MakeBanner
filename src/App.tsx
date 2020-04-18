@@ -8,23 +8,21 @@ import { Header } from './components/Header';
 import { Input } from './components/Input';
 import useInput from './hooks/useInput';
 import { BACKGROUNDCOLOR } from './utils/color';
+import { getRandomHexColor } from './utils/util';
+
+const DEFAULT_VALUE = "Let's make Banner!";
 
 const App = () => {
   const [state, onChange] = useInput({
     width: "700",
     height: "350",
-    value: ""
+    value: DEFAULT_VALUE
   });
 
-  const [colorPickerShow, setColorPickerShow] = useState<boolean>(false);
-  const [background, setBackground] = useState<string>("");
+  const [colorPickerShow, setColorPickerShow] = useState(false);
+  const [background, setBackground] = useState(getRandomHexColor);
 
   const { width, height, value } = state;
-
-  useEffect(() => {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    setBackground(`#${randomColor}`);
-  }, []);
 
   const handleColorPicker = useCallback(() => {
     setColorPickerShow(!colorPickerShow);
