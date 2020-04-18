@@ -8,11 +8,12 @@ interface Props {
   height: number;
   text: string;
   backgroundColor: string;
+  textColor: string;
   style?: React.CSSProperties;
 }
 
 export const DisplayBanner = (props: Props) => {
-  const { width, height, text, backgroundColor, style } = props;
+  const { width, height, text, backgroundColor, textColor, style } = props;
   const [drawable, setDrawable] = useState(false);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -32,10 +33,10 @@ export const DisplayBanner = (props: Props) => {
 
     ctx!.font = "20px SF Pro";
     ctx!.textAlign = "center";
-    ctx!.fillStyle = WHITE;
+    ctx!.fillStyle = textColor;
 
     ctx!.fillText(text, width / 2, height / 2);
-  }, [width, height, text]);
+  }, [width, height, text, textColor]);
 
   const handleMove = useCallback(
     (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
@@ -47,14 +48,14 @@ export const DisplayBanner = (props: Props) => {
 
       ctx!.font = "20px SF Pro";
       ctx!.textAlign = "center";
-      ctx!.fillStyle = WHITE;
+      ctx!.fillStyle = textColor;
 
       const x = e.pageX - canvasRef.current!.offsetLeft;
       const y = e.pageY - canvasRef.current!.offsetTop;
 
       ctx!.fillText(text, x, y);
     },
-    [text, drawable]
+    [text, drawable, textColor]
   );
 
   return (

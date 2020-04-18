@@ -11,13 +11,13 @@ export const ColorButton = (props: Props) => {
   const { color, onClick, icon } = props;
 
   return (
-    <Wrapper color={color} onClick={onClick}>
+    <StyledButton color={color} onClick={onClick}>
       {icon && icon}
-    </Wrapper>
+    </StyledButton>
   );
 };
 
-const Wrapper = styled("button")<{ color: string }>`
+const StyledButton = styled("button")<{ color: string }>`
   width: 40px;
   height: 40px;
   background-color: ${(props) => props.color};
