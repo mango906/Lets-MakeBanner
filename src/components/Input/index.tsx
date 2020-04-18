@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 interface Props {
   placeholder?: string;
@@ -12,10 +12,10 @@ interface Props {
 export const Input = (props: Props) => {
   const { style, placeholder, onChange, name, value } = props;
 
-  return <Wrapper onChange={onChange} style={style} placeholder={placeholder} name={name} value={value} />;
+  return <StyledInput onChange={onChange} style={style} placeholder={placeholder} name={name} value={value} />;
 };
 
-const Wrapper = styled.input`
+const StyledInput = styled.input`
   font-size: 14px;
   height: 32px;
   padding: 0px 16px;
