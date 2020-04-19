@@ -22,6 +22,5 @@ const StyledButton = styled("button")<{ color: string }>`
   height: 40px;
   background-color: ${(props) => props.color};
   cursor: pointer;
-  border: 1px solid #fff;
   border-radius: 3px;
 `;
