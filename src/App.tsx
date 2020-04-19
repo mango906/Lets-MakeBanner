@@ -8,7 +8,7 @@ import { DisplayBanner } from './components/DisplayBanner';
 import { Header } from './components/Header';
 import { Input } from './components/Input';
 import useInput from './hooks/useInput';
-import { BACKGROUNDCOLOR, BLACK } from './utils/color';
+import { BACKGROUNDCOLOR, WHITE } from './utils/color';
 import { getContrastYIQ, getRandomHexColor } from './utils/util';
 
 const DEFAULT_VALUE = "Let's make Banner!";
@@ -23,7 +23,7 @@ const App = () => {
   const [colorPickerShow, setColorPickerShow] = useState(false);
   const [textColorPickerShow, setTextColorPickerShow] = useState(false);
   const [background, setBackground] = useState(getRandomHexColor);
-  const [color, setColor] = useState(BLACK);
+  const [color, setColor] = useState(WHITE);
 
   const { width, height, value } = state;
 
