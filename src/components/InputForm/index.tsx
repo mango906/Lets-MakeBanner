@@ -4,9 +4,11 @@ import { GoTextSize } from 'react-icons/go';
 import styled from 'styled-components';
 
 import { WHITE } from '../../utils/color';
+import { fontSize } from '../../utils/option';
 import { getContrastYIQ } from '../../utils/util';
 import { ColorButton } from '../ColorButton';
 import { Input } from '../Input';
+import { SelectBox } from '../SelectBox';
 
 const DEFAULT_VALUE = "Let's make Banner!";
 
@@ -32,13 +34,14 @@ export const InputForm = () => {
 
   return (
     <>
-      <Wrapper onClick={handleColorPicker}>
+      <Wrapper>
         <Input value={DEFAULT_VALUE} />
         <StyledColorBtn
           color={btnBackgroundColor}
           onClick={handleColorPicker}
           icon={<GoTextSize color={color} size="24" />}
         />
+        <StyledSelectBox data={fontSize} />
       </Wrapper>
       {colorPicker}
     </>
@@ -51,5 +54,9 @@ const Wrapper = styled.div`
 `;
 
 const StyledColorBtn = styled(ColorButton)`
+  margin-left: 12px;
+`;
+
+const StyledSelectBox = styled(SelectBox)`
   margin-left: 12px;
 `;
