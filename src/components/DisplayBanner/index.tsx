@@ -55,7 +55,7 @@ export const DisplayBanner = (props: Props) => {
 
       ctx!.fillText(text, x, y);
     },
-    [text, drawable, textColor]
+    [width, height, text, drawable, textColor]
   );
 
   return (

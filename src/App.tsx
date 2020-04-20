@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ChromePicker } from 'react-color';
-import { GoTextSize } from 'react-icons/go';
 import styled from 'styled-components';
 
 import { ColorButton } from './components/ColorButton';
 import { DisplayBanner } from './components/DisplayBanner';
 import { Header } from './components/Header';
 import { Input } from './components/Input';
+import { InputForm } from './components/InputForm';
 import useInput from './hooks/useInput';
 import { BACKGROUNDCOLOR, WHITE } from './utils/color';
-import { getContrastYIQ, getRandomHexColor } from './utils/util';
+import { getRandomHexColor } from './utils/util';
 
 const DEFAULT_VALUE = "Let's make Banner!";
 
@@ -21,7 +21,6 @@ const App = () => {
   });
 
   const [colorPickerShow, setColorPickerShow] = useState(false);
-  const [textColorPickerShow, setTextColorPickerShow] = useState(false);
   const [background, setBackground] = useState(getRandomHexColor);
   const [color, setColor] = useState(WHITE);
 
@@ -31,24 +30,12 @@ const App = () => {
     setColorPickerShow(!colorPickerShow);
   }, [colorPickerShow]);
 
-  const handleTextColorPicker = useCallback(() => {
-    setTextColorPickerShow(!textColorPickerShow);
-  }, [textColorPickerShow]);
-
   const closeBackgroundPicker = useCallback(() => {
     setColorPickerShow(false);
   }, []);
 
   const handleBackgroundChange = useCallback((color) => {
     setBackground(color.hex);
-  }, []);
-
-  const handleTextColorChange = useCallback((color) => {
-    setColor(color.hex);
-  }, []);
-
-  const closeTextColorPicker = useCallback(() => {
-    setTextColorPickerShow(false);
   }, []);
 
   const backgroundPicker = useMemo(() => {
@@ -59,21 +46,9 @@ const App = () => {
     );
   }, [background, colorPickerShow, handleBackgroundChange, closeBackgroundPicker]);
 
-  const textColorPicker = useMemo(() => {
-    return (
-      textColorPickerShow && (
-        <ChromePicker color={color} onChange={handleTextColorChange} onChangeComplete={closeTextColorPicker} />
-      )
-    );
-  }, [color, textColorPickerShow, handleTextColorChange, closeTextColorPicker]);
-
   const eventBubbling = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
   }, []);
-
-  const btnBackgroundColor = useMemo(() => {
-    return getContrastYIQ(color);
-  }, [color]);
 
   return (
     <Container>
@@ -97,15 +72,11 @@ const App = () => {
           text={value}
           textColor={color}
         />
-        <Input value={value} name="value" onChange={onChange} />
-        <ColorButton onClick={handleColorPicker} color={background} />
-        <ColorButton
-          color={btnBackgroundColor}
-          onClick={handleTextColorPicker}
-          icon={<GoTextSize color={color} size="24" />}
-        />
+        <StyledColorBtn onClick={handleColorPicker} color={background} />
+
+        <InputForm />
+
         {backgroundPicker}
-        {textColorPicker}
       </Content>
     </Container>
   );
@@ -128,5 +99,9 @@ const Content = styled.div`
 `;
 
 const BannerForm = styled.div``;
+
+const StyledColorBtn = styled(ColorButton)`
+  margin: 12px 0px;
+`;
 
 export default App;

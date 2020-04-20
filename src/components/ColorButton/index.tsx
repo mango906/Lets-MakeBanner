@@ -8,10 +8,10 @@ interface Props {
 }
 
 export const ColorButton = (props: Props) => {
-  const { color, onClick, icon } = props;
+  const { color, icon, onClick, ...restProps } = props;
 
   return (
-    <StyledButton color={color} onClick={onClick}>
+    <StyledButton color={color} onClick={onClick} {...restProps}>
       {icon && icon}
     </StyledButton>
   );

@@ -4,15 +4,17 @@ import styled from 'styled-components';
 interface Props {
   placeholder?: string;
   style?: React.CSSProperties;
-  onChange: () => void;
-  name: string;
-  value: string;
+  onChange?: () => void;
+  name?: string;
+  value?: string;
 }
 
 export const Input = (props: Props) => {
-  const { style, placeholder, onChange, name, value } = props;
+  const { style, placeholder, onChange, name, value, ...restProps } = props;
 
-  return <StyledInput onChange={onChange} style={style} placeholder={placeholder} name={name} value={value} />;
+  return (
+    <StyledInput onChange={onChange} style={style} placeholder={placeholder} name={name} value={value} {...restProps} />
+  );
 };
 
 const StyledInput = styled.input`
