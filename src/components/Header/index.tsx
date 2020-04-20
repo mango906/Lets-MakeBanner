@@ -1,11 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { Icons } from "../Icons";
+import React from 'react';
+import styled from 'styled-components';
+
+import { Icons } from '../Icons';
 
 export const Header = () => {
   return (
     <Container>
-      <Icons type="github" />
+      <a href="https://github.com/mango906/Lets-MakeBanner" target="_blank" rel="noopener noreferrer">
+        <Icons type="github" />
+      </a>
     </Container>
   );
 };
