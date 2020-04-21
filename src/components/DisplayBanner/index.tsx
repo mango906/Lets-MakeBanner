@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
+import { setTextOptions } from '../../utils/canvas';
 import { WHITE } from '../../utils/color';
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
   text: string;
   backgroundColor: string;
   textColor: string;
+  fontSize: string;
   style?: React.CSSProperties;
 }
 
@@ -25,6 +27,18 @@ export const DisplayBanner = (props: Props) => {
   const finishDraw = useCallback(() => {
     setDrawable(false);
   }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current!;
+
+    const params = {
+      textColor,
+      fontSize: "12",
+      fontFamily: ""
+    };
+
+    setTextOptions(canvas, text, params);
+  }, [textColor, text]);
 
   useEffect(() => {
     const ctx = canvasRef.current!.getContext("2d");

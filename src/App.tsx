@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { ChromePicker } from 'react-color';
 import styled from 'styled-components';
 
@@ -11,18 +11,19 @@ import useInput from './hooks/useInput';
 import { BACKGROUNDCOLOR, WHITE } from './utils/color';
 import { getRandomHexColor } from './utils/util';
 
-const DEFAULT_VALUE = "Let's make Banner!";
+const DEFAULT_FONT_SIZE = "20";
 
 const App = () => {
   const [state, onChange] = useInput({
     width: "700",
     height: "350",
-    value: DEFAULT_VALUE
+    value: ""
   });
 
   const [colorPickerShow, setColorPickerShow] = useState(false);
   const [background, setBackground] = useState(getRandomHexColor);
   const [color, setColor] = useState(WHITE);
+  const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
 
   const { width, height, value } = state;
 
@@ -50,6 +51,11 @@ const App = () => {
     e.stopPropagation();
   }, []);
 
+  const canvasOptionChange = useCallback((textColor, fontSize) => {
+    setColor(textColor);
+    setFontSize(fontSize);
+  }, []);
+
   return (
     <Container>
       <Header />
@@ -64,6 +70,7 @@ const App = () => {
             value={height}
           />
         </BannerForm>
+
         <DisplayBanner
           width={width}
           height={height}
@@ -71,10 +78,11 @@ const App = () => {
           backgroundColor={background}
           text={value}
           textColor={color}
+          fontSize={fontSize}
         />
         <StyledColorBtn onClick={handleColorPicker} color={background} />
 
-        <InputForm />
+        <InputForm onChange={canvasOptionChange} onInputChange={onChange} />
 
         {backgroundPicker}
       </Content>

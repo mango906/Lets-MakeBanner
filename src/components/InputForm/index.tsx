@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { SketchPicker } from 'react-color';
 import { GoTextSize } from 'react-icons/go';
 import styled from 'styled-components';
@@ -10,11 +10,20 @@ import { ColorButton } from '../ColorButton';
 import { Input } from '../Input';
 import { SelectBox } from '../SelectBox';
 
-const DEFAULT_VALUE = "Let's make Banner!";
+interface Props {
+  onChange: (textColor: string, fontSize: string) => void;
+  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-export const InputForm = () => {
+export const InputForm: React.FC<Props> = (props) => {
+  const { onChange, onInputChange } = props;
+
   const [color, setColor] = useState(WHITE);
   const [colorPickerShow, setColorPickerShow] = useState(false);
+
+  useEffect(() => {
+    onChange(color, "20");
+  }, [color, onChange]);
 
   const handleColorChange = useCallback((color) => {
     setColor(color.hex);
@@ -35,7 +44,7 @@ export const InputForm = () => {
   return (
     <>
       <Wrapper>
-        <Input value={DEFAULT_VALUE} />
+        <Input name="value" onChange={onInputChange} placeholder="Let's make Banner!" />
         <StyledColorBtn
           color={btnBackgroundColor}
           onClick={handleColorPicker}

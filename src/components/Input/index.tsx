@@ -4,7 +4,7 @@ import styled from 'styled-components';
 interface Props {
   placeholder?: string;
   style?: React.CSSProperties;
-  onChange?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   value?: string;
 }
