@@ -14,9 +14,18 @@ interface Props {
   style?: React.CSSProperties;
 }
 
+type PositionType = {
+  x: number;
+  y: number;
+};
+
 export const DisplayBanner = (props: Props) => {
   const { width, height, text, backgroundColor, textColor, style } = props;
   const [drawable, setDrawable] = useState(false);
+  const [position, setPosition] = useState<PositionType>({
+    x: width / 2,
+    y: height / 2
+  });
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -33,24 +42,17 @@ export const DisplayBanner = (props: Props) => {
 
     const params = {
       textColor,
-      fontSize: "12",
-      fontFamily: ""
+      fontSize: "24",
+      fontFamily: "SF Pro",
+      position,
+      canvasSize: {
+        width,
+        height
+      }
     };
 
     setTextOptions(canvas, text, params);
-  }, [textColor, text]);
-
-  useEffect(() => {
-    const ctx = canvasRef.current!.getContext("2d");
-
-    ctx!.clearRect(0, 0, width, height);
-
-    ctx!.font = "20px SF Pro";
-    ctx!.textAlign = "center";
-    ctx!.fillStyle = textColor;
-
-    ctx!.fillText(text, width / 2, height / 2);
-  }, [width, height, text, textColor]);
+  }, [textColor, text, position, width, height]);
 
   const handleMove = useCallback(
     (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
@@ -66,6 +68,8 @@ export const DisplayBanner = (props: Props) => {
 
       const x = e.pageX - canvasRef.current!.offsetLeft;
       const y = e.pageY - canvasRef.current!.offsetTop;
+
+      setPosition({ x, y });
 
       ctx!.fillText(text, x, y);
     },
