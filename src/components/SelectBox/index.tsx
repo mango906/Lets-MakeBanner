@@ -6,10 +6,11 @@ const { Option } = Select;
 
 interface Props {
   data: string[];
+  onChange: (value: unknown) => void;
 }
 
 export const SelectBox: React.FC<Props> = (props) => {
-  const { data, ...restProps } = props;
+  const { data, onChange, ...restProps } = props;
 
   const options = useMemo(() => {
     return data.map((value, index) => (
@@ -20,7 +21,7 @@ export const SelectBox: React.FC<Props> = (props) => {
   }, [data]);
 
   return (
-    <StyledSelect defaultValue="font size" {...restProps}>
+    <StyledSelect defaultValue="font size" {...restProps} onChange={onChange}>
       {options}
     </StyledSelect>
   );

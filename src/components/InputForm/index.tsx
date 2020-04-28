@@ -4,7 +4,7 @@ import { GoTextSize } from 'react-icons/go';
 import styled from 'styled-components';
 
 import { WHITE } from '../../utils/color';
-import { fontSize } from '../../utils/option';
+import { fontSizes } from '../../utils/option';
 import { getContrastYIQ } from '../../utils/util';
 import { ColorButton } from '../ColorButton';
 import { Input } from '../Input';
@@ -20,10 +20,11 @@ export const InputForm: React.FC<Props> = (props) => {
 
   const [color, setColor] = useState(WHITE);
   const [colorPickerShow, setColorPickerShow] = useState(false);
+  const [fontSize, setFontSize] = useState("20");
 
   useEffect(() => {
-    onChange(color, "20");
-  }, [color, onChange]);
+    onChange(color, fontSize);
+  }, [color, fontSize, onChange]);
 
   const handleColorChange = useCallback((color) => {
     setColor(color.hex);
@@ -32,6 +33,10 @@ export const InputForm: React.FC<Props> = (props) => {
   const handleColorPicker = useCallback(() => {
     setColorPickerShow(!colorPickerShow);
   }, [colorPickerShow]);
+
+  const handleFontSizeChange = useCallback((value) => {
+    setFontSize(value.toString());
+  }, []);
 
   const colorPicker = useMemo(() => {
     return colorPickerShow ? <SketchPicker color={color} onChange={handleColorChange} /> : null;
@@ -50,7 +55,7 @@ export const InputForm: React.FC<Props> = (props) => {
           onClick={handleColorPicker}
           icon={<GoTextSize color={color} size="24" />}
         />
-        <StyledSelectBox data={fontSize} />
+        <StyledSelectBox data={fontSizes} onChange={handleFontSizeChange} />
       </Wrapper>
       {colorPicker}
     </>

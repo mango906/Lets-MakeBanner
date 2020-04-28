@@ -20,7 +20,7 @@ type PositionType = {
 };
 
 export const DisplayBanner = (props: Props) => {
-  const { width, height, text, backgroundColor, textColor, style } = props;
+  const { width, height, text, backgroundColor, textColor, fontSize, style } = props;
   const [drawable, setDrawable] = useState(false);
   const [position, setPosition] = useState<PositionType>({
     x: width / 2,
@@ -42,7 +42,7 @@ export const DisplayBanner = (props: Props) => {
 
     const params = {
       textColor,
-      fontSize: "24",
+      fontSize,
       fontFamily: "SF Pro",
       position,
       canvasSize: {
@@ -52,7 +52,7 @@ export const DisplayBanner = (props: Props) => {
     };
 
     setTextOptions(canvas, text, params);
-  }, [textColor, text, position, width, height]);
+  }, [textColor, text, position, width, height, fontSize]);
 
   const handleMove = useCallback(
     (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {

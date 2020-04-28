@@ -1,1 +1,1 @@
-export const fontSize = ["12", "24", "36", "48", "60", "72"];
+export const fontSizes = ["12", "24", "36", "48", "60", "72"];
