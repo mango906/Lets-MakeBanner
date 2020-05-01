@@ -11,7 +11,7 @@ import useInput from './hooks/useInput';
 import { BACKGROUNDCOLOR, WHITE } from './utils/color';
 import { getRandomHexColor } from './utils/util';
 
-const DEFAULT_FONT_SIZE = "20";
+const DEFAULT_FONT_SIZE = "24";
 
 const App = () => {
   const [state, onChange] = useInput({
