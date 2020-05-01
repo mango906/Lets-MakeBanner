@@ -9,15 +9,14 @@ import { Input } from './components/Input';
 import { InputForm } from './components/InputForm';
 import useInput from './hooks/useInput';
 import { BACKGROUNDCOLOR, WHITE } from './utils/color';
+import { DEFAULT_CANVAS_HEIGHT, DEFAULT_CANVAS_TEXT, DEFAULT_CANVAS_WIDTH, DEFAULT_FONT_SIZE } from './utils/const';
 import { getRandomHexColor } from './utils/util';
-
-const DEFAULT_FONT_SIZE = "24";
 
 const App = () => {
   const [state, onChange] = useInput({
-    width: "700",
-    height: "350",
-    value: ""
+    width: DEFAULT_CANVAS_WIDTH,
+    height: DEFAULT_CANVAS_HEIGHT,
+    value: DEFAULT_CANVAS_TEXT
   });
 
   const [colorPickerShow, setColorPickerShow] = useState(false);
@@ -82,7 +81,7 @@ const App = () => {
         />
         <StyledColorBtn onClick={handleColorPicker} color={background} />
 
-        <InputForm onChange={canvasOptionChange} onInputChange={onChange} />
+        <InputForm value={state.value} onChange={canvasOptionChange} onInputChange={onChange} />
 
         {backgroundPicker}
       </Content>

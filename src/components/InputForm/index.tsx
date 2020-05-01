@@ -13,12 +13,13 @@ import { SelectBox } from '../SelectBox';
 const DEFAULT_FONT_SIZE = "24";
 
 interface Props {
+  value: string;
   onChange: (textColor: string, fontSize: string) => void;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputForm: React.FC<Props> = (props) => {
-  const { onChange, onInputChange } = props;
+  const { value, onChange, onInputChange } = props;
 
   const [color, setColor] = useState(WHITE);
   const [colorPickerShow, setColorPickerShow] = useState(false);
@@ -51,7 +52,7 @@ export const InputForm: React.FC<Props> = (props) => {
   return (
     <>
       <Wrapper>
-        <Input name="value" onChange={onInputChange} placeholder="Let's make Banner!" />
+        <Input value={value} name="value" onChange={onInputChange} placeholder="Let's make Banner!" />
         <StyledColorBtn
           color={btnBackgroundColor}
           onClick={handleColorPicker}

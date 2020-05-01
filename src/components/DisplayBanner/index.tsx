@@ -19,7 +19,7 @@ type PositionType = {
   y: number;
 };
 
-export const DisplayBanner = (props: Props) => {
+export const DisplayBanner: React.FC<Props> = (props) => {
   const { width, height, text, backgroundColor, textColor, fontSize, style } = props;
   const [drawable, setDrawable] = useState(false);
   const [position, setPosition] = useState<PositionType>({
