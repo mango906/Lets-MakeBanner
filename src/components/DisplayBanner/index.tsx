@@ -58,22 +58,12 @@ export const DisplayBanner = (props: Props) => {
     (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
       if (!drawable) return;
 
-      const ctx = canvasRef.current!.getContext("2d");
-
-      ctx!.clearRect(0, 0, width, height);
-
-      ctx!.font = "20px SF Pro";
-      ctx!.textAlign = "center";
-      ctx!.fillStyle = textColor;
-
       const x = e.pageX - canvasRef.current!.offsetLeft;
       const y = e.pageY - canvasRef.current!.offsetTop;
 
       setPosition({ x, y });
-
-      ctx!.fillText(text, x, y);
     },
-    [width, height, text, drawable, textColor]
+    [drawable]
   );
 
   return (

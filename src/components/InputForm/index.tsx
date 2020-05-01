@@ -10,6 +10,8 @@ import { ColorButton } from '../ColorButton';
 import { Input } from '../Input';
 import { SelectBox } from '../SelectBox';
 
+const DEFAULT_FONT_SIZE = "24";
+
 interface Props {
   onChange: (textColor: string, fontSize: string) => void;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -20,7 +22,7 @@ export const InputForm: React.FC<Props> = (props) => {
 
   const [color, setColor] = useState(WHITE);
   const [colorPickerShow, setColorPickerShow] = useState(false);
-  const [fontSize, setFontSize] = useState("20");
+  const [fontSize, setFontSize] = useState(DEFAULT_FONT_SIZE);
 
   useEffect(() => {
     onChange(color, fontSize);
