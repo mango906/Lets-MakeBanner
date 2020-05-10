@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { ColorButton } from './components/ColorButton';
 import { DisplayBanner } from './components/DisplayBanner';
+import { DownLoadBtn } from './components/DownLoadBtn';
 import { Header } from './components/Header';
 import { Input } from './components/Input';
 import { InputForm } from './components/InputForm';
@@ -82,6 +83,8 @@ const App = () => {
         <StyledColorBtn onClick={handleColorPicker} color={background} />
 
         <InputForm value={state.value} onChange={canvasOptionChange} onInputChange={onChange} />
+
+        <DownLoadBtn />
 
         {backgroundPicker}
       </Content>
