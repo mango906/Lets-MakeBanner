@@ -1,18 +1,23 @@
-import React from "react";
-import styled from "styled-components";
-import { Icon } from "antd";
+import React from 'react';
+
+import * as icons from './interface';
+
+type IconType = keyof typeof icons;
 
 interface Props {
-  type: string;
+  type: IconType;
+  color: string;
+  size?: string | number;
 }
 
 export const Icons = (props: Props) => {
-  const { type } = props;
+  const { type, color, size } = props;
 
-  return <Wrapper type={type} />;
+  const SVGIcon = icons[type];
+
+  return <SVGIcon size={size} color={color} style={{ fontSize: 30 }} />;
 };
 
-const Wrapper = styled(Icon)`
-  font-size: 30px;
-  color: #eee;
-`;
+Icons.defaultProps = {
+  color: "#eee"
+};
